@@ -1,9 +1,7 @@
 'use client'
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
 import 'swiper/css';
+
 import Link from 'next/link'
 
 interface Category {
@@ -22,7 +20,7 @@ const CategoriesSwiper: React.FC = () => {
     ]
 
     return (
-        <div className='container pe-0'>
+        <div className='container pe-0 mb-3'>
             <Swiper
                 spaceBetween={3}
                 slidesPerView={2.5}

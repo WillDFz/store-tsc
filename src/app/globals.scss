@@ -19,3 +19,23 @@ a{
     font-weight: 500;
     color: #6B7280;
 }
+
+.custom-light-badge {
+    background: #fff;
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #6B7280;
+}
+
+
+.text-over-banner-left{
+    position: absolute;
+    top: 15%;
+    z-index: 1;
+}
+
+.custom-font-small{
+    font-size: 0.75rem;
+}
