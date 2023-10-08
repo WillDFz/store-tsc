@@ -39,3 +39,12 @@ a{
 .custom-font-small{
     font-size: 0.75rem;
 }
+
+.overlay{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 2;
+}
