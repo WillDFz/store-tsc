@@ -1,3 +1,8 @@
+html, body{
+    background: #F7FAFC !important;
+    background-color: #F7FAFC !important;
+}
+
 a{
     display: inline-flex;
     text-decoration: none !important;
@@ -47,4 +52,9 @@ a{
     top: 0;
     background: rgba(0,0,0,0.5);
     z-index: 2;
+}
+
+.custom-light-bg{
+    background: #fff !important;
+    background-color: #fff !important;
 }
