@@ -19,7 +19,7 @@ const HomeSlider: React.FC = () => {
     ]
 
     return (
-        <div>
+        <section className='mb-3'>
             <Swiper>
                 {bannersMobile.map((banner: Banner, index) =>
                     <SwiperSlide key={index} >
@@ -37,7 +37,7 @@ const HomeSlider: React.FC = () => {
                 }
 
             </Swiper>
-        </div>
+        </section>
     )
 }
 

@@ -13,7 +13,7 @@ const Header: React.FC = () => {
 
   return (
     <div>
-      <Container>
+      <Container className='custom-light-bg'>
         <Row className='py-2'>
           <Col>
             <div style={{ display: "flex", zIndex: '3' }}>

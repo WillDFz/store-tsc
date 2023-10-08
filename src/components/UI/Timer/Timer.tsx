@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { intervalToDuration, addDays } from 'date-fns';
 
 import styles from './Timer.module.scss';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 
 
 interface TimerProps {
@@ -41,9 +41,8 @@ const Timer: React.FC<TimerProps> = ({ deadlineInDays }) => {
 
 
     return (
-        <div className='container'>
+        <Container className='custom-light-bg py-3 mb-3'>
             <Row>
-
                 <Col>
                     <div className='fw-bold'>Promoções</div>
                     <div className='custom-font-small'>Eletrônicos</div>
@@ -70,7 +69,7 @@ const Timer: React.FC<TimerProps> = ({ deadlineInDays }) => {
             </Row>
 
 
-        </div>
+        </Container>
     );
 }
 

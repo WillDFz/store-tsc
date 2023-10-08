@@ -30,12 +30,9 @@ const CategoriesSwiper: React.FC = () => {
                     <SwiperSlide key={index}>
                         <Link href={`categories/${category.slug}`} className='custom-regular-badge w-100 d-block text-center'>
                             {category.name}
-
                         </Link>
                     </SwiperSlide>
-
                 ))}
-
             </Swiper>
         </div>
     )
