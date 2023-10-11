@@ -4,6 +4,7 @@ import HomeSlider from './../components/HomeSlider/HomeSlider';
 import Timer from '@/components/UI/Timer/Timer';
 import ProductSlider from './../components/UI/ProductsSlider/ProductSlider';
 import Banner from './../components/UI/Banner/Banner';
+import Footer from './../components/UI/Footer/Footer';
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Banner banner="banner-02" /> 
       <ProductSlider category='electronics' />
       <ProductSlider category='jewelery' />
+      <Footer />
     </main>
   )
 }
