@@ -1,6 +1,6 @@
 'use client'
 import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -12,6 +12,8 @@ import 'swiper/css/pagination';
 import styles from './ProductSlider.module.scss'
 import Rating from './../Rating/Rating';
 import { Container } from 'react-bootstrap';
+import { CartContext } from '@/components/Context/CartContext/CartContext';
+
 
 
 interface ProductSliderProps {
@@ -32,9 +34,14 @@ interface Product {
 }
 
 const ProductSlider: React.FC<ProductSliderProps> = ({ category }) => {
+  const [apiRoute, setApiRoute] = useState<String>()
+
   const [products, setProducts] = useState<Product[]>([])
 
-  const [apiRoute, setApiRoute] = useState<String>()
+  const { addItem } = useContext(CartContext);
+
+
+
 
   useEffect(() => {
     if (category === 'all') {
@@ -73,6 +80,7 @@ const ProductSlider: React.FC<ProductSliderProps> = ({ category }) => {
                 <div className={`${styles.itemName} mb-2`}>{product.title}</div>
                 <div>${product.price}</div>
                 <Rating rating={product.rating.rate} />
+                <button onClick={(e) => addItem(product)}>Comprar</button>
               </div>
             </div>
 
