@@ -1,5 +1,5 @@
 'use client'
-import React, { createContext, useEffect, useState } from 'react'
+import React, { ReactNode, createContext, useEffect, useState } from 'react'
 
 interface Item {
     id: number,
@@ -12,13 +12,20 @@ interface CartContextType {
     cart: Item[];
     addItem: (item: Item) => void;
     removeItem: (item: number) => void;
+    updateQuantity: (item: Item) => void;
+    totalItemsPrice: number;
+}
+
+interface CartProviderProps {
+    children: ReactNode
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined)
 
-const CartProvider: React.FC = ({ children }) => {
+const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
 
     const [cart, setCart] = useState<Item[]>([])
+    const [totalItemsPrice, setTotalItemsPrice] = useState<number>(0)
 
 
     const addItem = (item: Item) => {
@@ -28,8 +35,9 @@ const CartProvider: React.FC = ({ children }) => {
             // If item already exists, update quantity
             const updatedCart = cart.map((cartItem, index) => {
                 if (index === existingItemIndex) {
-                    console.log(cartItem.quantity)
+                    console.log(cartItem.quantity);
                     let quantityUpdated = cartItem.quantity ? cartItem.quantity + 1 : cartItem.quantity = 2;
+                    console.log("quantity", quantityUpdated);
                     return {
                         ...cartItem,
                         quantity: quantityUpdated,
@@ -39,7 +47,15 @@ const CartProvider: React.FC = ({ children }) => {
             });
             setCart(updatedCart);
         } else {
-            setCart([...cart, item]);
+            // If item doesn't exist, add it to the cart with quantity 1
+            const updatedCart = [
+                ...cart,
+                {
+                    ...item,
+                    quantity: 1,
+                },
+            ];
+            setCart(updatedCart);
         }
     };
 
@@ -48,13 +64,30 @@ const CartProvider: React.FC = ({ children }) => {
         setCart(newCart);
     };
 
-    useEffect(()=>{
+    const updateQuantity = (item: Item) => {
+        const updatedCart = cart.map((cartItem) => {
+            if (cartItem.id === item.id) {
+                const updatedValue = Math.max(1, cartItem.quantity - 1);
+                return { ...cartItem, quantity: updatedValue };
+            }
+            return cartItem;
+        });
+        setCart(updatedCart);
+    };
+
+    useEffect(()=> {
+        cart.map((item)=>{
+            setTotalItemsPrice((totalItemsPrice + item.price))
+        })
         console.log("cart", cart)
     },[cart])
 
+    useEffect(() => {
+        console.log('total', totalItemsPrice)
+    }, [totalItemsPrice])
 
     return (
-        <CartContext.Provider value={{ cart, addItem, removeItem }}>
+        <CartContext.Provider value={{ cart, addItem, removeItem, updateQuantity, totalItemsPrice }}>
             {children}
         </CartContext.Provider>
     )

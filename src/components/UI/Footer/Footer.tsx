@@ -65,11 +65,14 @@ const Footer: React.FC = () => {
 
 
             </Row>
-            <Row className={`${styles.footerLegal} text-center text-lg-start p-3`}>
+            <div className={`${styles.footerLegal} text-center text-lg-start p-3`}>
+
+            <Row >
                 <Col>
                     © 2023 Will Dourado
                 </Col>
             </Row>
+            </div>
         </div>
     )
 }

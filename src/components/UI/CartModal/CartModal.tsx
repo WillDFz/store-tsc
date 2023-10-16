@@ -1,5 +1,5 @@
 import { CartContext } from '@/components/Context/CartContext/CartContext'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Image from 'next/image';
 
 import styles from './CartModal.module.scss'
@@ -10,7 +10,8 @@ interface CartModalProps {
 }
 
 const CartModal: React.FC<CartModalProps> = ({ closeCart }) => {
-    const { cart, removeItem } = useContext(CartContext)
+    const { cart, addItem, totalItemsPrice } = useContext(CartContext)
+
 
 
     return (
@@ -25,7 +26,19 @@ const CartModal: React.FC<CartModalProps> = ({ closeCart }) => {
                 </div>
             </div>
             {cart.length > 0 ?
-                <CartModalItem cart={cart} />
+                <>
+                    <CartModalItem cart={cart} addItem={addItem} />
+                    <div className='px-3'>
+                        <div className='d-flex justify-content-between'>
+                            <div>
+                                Items({cart.length})
+                            </div>
+                            <div>
+                                ${totalItemsPrice.toFixed(2)}
+                            </div>
+                        </div>
+                    </div>
+                </>
                 : <div className='text-center p-5'>Carrinho vazio</div>
             }
         </div>
