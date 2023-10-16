@@ -10,7 +10,14 @@ interface CartModalProps {
 }
 
 const CartModal: React.FC<CartModalProps> = ({ closeCart }) => {
-    const { cart, addItem, totalItemsPrice } = useContext(CartContext)
+    const cartContext = useContext(CartContext);
+
+    if (!cartContext) {
+        return <div>Carregando...</div>;
+    }
+    
+    const { cart, addItem, totalItemsPrice } = cartContext;
+
 
 
 
