@@ -15,7 +15,7 @@ const CartModal: React.FC<CartModalProps> = ({ closeCart }) => {
     if (!cartContext) {
         return <div>Carregando...</div>;
     }
-    
+
     const { cart, addItem, totalItemsPrice } = cartContext;
 
 
@@ -32,16 +32,35 @@ const CartModal: React.FC<CartModalProps> = ({ closeCart }) => {
             </div>
             {cart.length > 0 ?
                 <>
-                    <CartModalItem cart={cart} addItem={addItem} />
+                    <div className='mb-3'>
+                        <CartModalItem cart={cart} addItem={addItem} />
+                    </div>
                     <div className='px-3'>
-                        <div className='d-flex justify-content-between'>
+                        <div className='d-flex justify-content-between mb-2'>
                             <div>
-                                Items({cart.length})
+                                Items ({cart.length})
                             </div>
                             <div>
                                 ${totalItemsPrice.toFixed(2)}
                             </div>
                         </div>
+                        <div className='d-flex justify-content-between mb-2'>
+                            <div>
+                                Frete:
+                            </div>
+                            <div>
+                                $0.00
+                            </div>
+                        </div>
+                        <div className='d-flex justify-content-between fw-bold'>
+                            <div>
+                                Total:
+                            </div>
+                            <div>
+                                ${totalItemsPrice.toFixed(2)}
+                            </div>
+                        </div>
+                        <button className='buy-btn p-2 mt-3'>Finalizar compra</button>
                     </div>
                 </>
                 : <div className='text-center p-5'>Carrinho vazio</div>
