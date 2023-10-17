@@ -19,8 +19,6 @@ const CartModal: React.FC<CartModalProps> = ({ closeCart }) => {
     const { cart, addItem, totalItemsPrice } = cartContext;
 
 
-
-
     return (
         <div className={`${styles.cartModal}`}>
 

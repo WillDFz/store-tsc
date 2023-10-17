@@ -5,11 +5,37 @@ import styles from './CartModalItem.module.scss'
 import { CartContext } from '@/components/Context/CartContext/CartContext';
 
 
+interface Item {
+    id: number,
+    title: string,
+    price: number,
+    description: string,
+    category: string,
+    image: string
+    rating: {
+      count: number,
+      rate: number
+    }
+    quantity: number
+}
+
+interface CartModalItemProps {
+    cart: Item[];
+    addItem: (item: Item) => void;
+}
 
 
-const CartModalItem = ({ cart, addItem }) => {
+const CartModalItem: React.FC<CartModalItemProps> = ({ cart, addItem }) => {
 
-    const { removeItem, updateQuantity } = useContext(CartContext)
+
+    const cartContext = useContext(CartContext)
+
+    if (!cartContext) {
+        return <></>
+    }
+
+    const { removeItem, updateQuantity } = cartContext
+
 
     return (
         <div className='px-3'>
@@ -30,7 +56,7 @@ const CartModalItem = ({ cart, addItem }) => {
                     <div className='d-flex align-items-center justify-content-between'>
 
                         <div className={`${styles.quantityInput} d-flex align-items-center`}>
-                            <button className='d-flex btn' onClick={(e)=> updateQuantity(item)}>
+                            <button className='d-flex btn' onClick={(e) => updateQuantity(item)}>
                                 <Image src='svg/minus.svg' width={20} height={20} alt='minus' />
                             </button>
                             <div className='px-2'>{item?.quantity}</div>

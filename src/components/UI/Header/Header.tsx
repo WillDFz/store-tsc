@@ -14,7 +14,12 @@ const Header: React.FC = () => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const [cartIsOpen, setCartOpen] = useState<boolean>(false)
 
-  const { cart } = useContext(CartContext)
+  const cartContext = useContext(CartContext)
+
+  if(!cartContext){
+    return
+  }
+  const { cart } = cartContext 
 
   return (
     <div>

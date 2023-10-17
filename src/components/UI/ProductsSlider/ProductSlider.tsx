@@ -32,7 +32,8 @@ interface Product {
   rating: {
     count: number,
     rate: number
-  }
+  },
+  quantity: number
 }
 
 const ProductSlider: React.FC<ProductSliderProps> = ({ category }) => {
@@ -40,7 +41,32 @@ const ProductSlider: React.FC<ProductSliderProps> = ({ category }) => {
 
   const [products, setProducts] = useState<Product[]>([])
 
-  const { addItem } = useContext(CartContext);
+  const cartContext = useContext(CartContext);
+
+  useEffect(() => {
+    if (category === 'all') {
+      setApiRoute('products')
+    } else {
+      setApiRoute(`products/category/${category}`)
+    }
+  }, [category])
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(`https://fakestoreapi.com/${apiRoute}`)
+        setProducts(response.data)
+      } catch (error) {
+      }
+    }
+    fetchProducts()
+  }, [apiRoute])
+
+  if (!cartContext) {
+    return
+  }
+
+  const { addItem } = cartContext
 
 
   const cartAlert = (id: number) => {
@@ -62,24 +88,7 @@ const ProductSlider: React.FC<ProductSliderProps> = ({ category }) => {
 
 
 
-  useEffect(() => {
-    if (category === 'all') {
-      setApiRoute('products')
-    } else {
-      setApiRoute(`products/category/${category}`)
-    }
-  }, [category])
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get(`https://fakestoreapi.com/${apiRoute}`)
-        setProducts(response.data)
-      } catch (error) {
-      }
-    }
-    fetchProducts()
-  }, [apiRoute])
 
   return (
     <>

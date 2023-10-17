@@ -3,11 +3,17 @@ import React, { ReactNode, createContext, useEffect, useState } from 'react'
 
 interface Item {
     id: number,
-    name: string,
+    title: string,
     price: number,
+    description: string,
+    category: string,
+    image: string
+    rating: {
+      count: number,
+      rate: number
+    }
     quantity: number
 }
-
 interface CartContextType {
     cart: Item[];
     addItem: (item: Item) => void;
