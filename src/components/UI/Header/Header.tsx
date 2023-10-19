@@ -8,6 +8,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import Sidebar from '../Sidebar/Sidebar';
 import CartModal from '../CartModal/CartModal'
 import { CartContext } from '@/components/Context/CartContext/CartContext'
+import Navbar from './../Navbar/Navbar';
 
 
 const Header: React.FC = () => {
@@ -16,16 +17,16 @@ const Header: React.FC = () => {
 
   const cartContext = useContext(CartContext)
 
-  if(!cartContext){
+  if (!cartContext) {
     return
   }
-  const { cart } = cartContext 
+  const { cart } = cartContext
 
   return (
-    <div>
-      <Container className='custom-light-bg'>
-        <Row className='py-2'>
-          <Col>
+    <header>
+      <Container fluid className='custom-light-bg px-md-5 pt-md-3'>
+        <Row className='d-flex align-items-center py-2'>
+          <Col className='d-lg-none'>
             <div style={{ display: "flex", zIndex: '3' }}>
 
               <Hamburger size={20} toggled={isOpen} toggle={setOpen} />
@@ -33,19 +34,34 @@ const Header: React.FC = () => {
           </Col>
           <Col>
             <Image src="/images/logo-typo.png" alt="logo" width={164} height={48} />
-            <div></div>
+          </Col>
+          <Col className='d-none d-lg-block'>
+            <SearchBar />
           </Col>
           <Col className='d-flex justify-content-end'>
-            <div>
-              <button onClick={(e) => setCartOpen(true)} className='btn'>
-                <Image src="/svg/cart.svg" alt="logo" width={25} height={25} />
-              </button>
-              <span>{cart.length}</span>
+            <div className='d-flex'>
+              <div className='d-none d-md-flex flex-column me-3'>
+                <button className='btn'>
+                  <Image src="svg/user.svg" alt="user" width={25} height={25} />
+                </button>
+                <span className='custom-font-small'>Minha conta</span>
+              </div>
+              <div className='d-flex flex-column position-relative'>
+                <button onClick={(e) => setCartOpen(true)} className='btn'>
+                  <Image src="/svg/cart.svg" alt="logo" width={25} height={25} />
+                </button>
+                <span className='custom-font-small cart-amout-badge'>{cart.length}</span>
+                <span className='d-none d-lg-block custom-font-small'>Carrinho</span>
+
+              </div>
             </div>
           </Col>
         </Row>
-        <Row>
+        <Row className='d-lg-none'>
           <SearchBar />
+        </Row>
+        <Row>
+          <Navbar />
         </Row>
       </Container>
       {isOpen &&
@@ -58,7 +74,7 @@ const Header: React.FC = () => {
         cartIsOpen &&
         <CartModal closeCart={setCartOpen} />
       }
-    </div>
+    </header>
   )
 }
 

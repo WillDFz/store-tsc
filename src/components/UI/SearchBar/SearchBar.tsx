@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const SearchBar: React.FC = () => {
     return (
-        <div className='mb-3'>
+        <div className='w-100 mb-3 mb-lg-0'>
             <div className='position-relative'>
                 <input className='w-100 custom-input' type="text" placeholder='Buscar' />
                 <button className='btn position-absolute' style={{ right: '0' }}>

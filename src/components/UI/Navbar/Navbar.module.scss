@@ -1,0 +1,16 @@
+.navbar{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 0;
+    list-style: none;
+    border-top: 1px solid #00000015;
+    .navbarItem{
+        padding: 1rem;
+        // border-left: 1px solid #00000015;
+        // border-right: 1px solid #00000015;
+        .navBarLink{
+            color: #000;
+        }
+    }
+}
