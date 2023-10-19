@@ -20,7 +20,7 @@ const CategoriesSwiper: React.FC = () => {
     ]
 
     return (
-        <div className='container pe-0 mb-3'>
+        <div className='container d-md-none pe-0 mb-3 my-lg-2'>
             <Swiper
                 spaceBetween={3}
                 slidesPerView={2.5}

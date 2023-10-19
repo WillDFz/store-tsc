@@ -9,6 +9,11 @@ a {
     text-decoration: none !important;
 }
 
+
+header{
+    box-shadow: 0px -20px 20px 1px #000;
+}
+
 .custom-input {
     padding: 7px 15px;
     background: #eff2f4;
@@ -78,4 +83,11 @@ a {
     margin: 0.5rem 0;
     border-radius: 6px;
     background: #0d6efd;
+}
+
+
+.cart-amout-badge {
+    position: absolute;
+    right: 0;
+    font-weight: 700;
 }

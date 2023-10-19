@@ -1,12 +1,13 @@
 .slider {
 }
 .item {
-    border-top: 1px solid #dee2e7;
-    border-right: 1px solid #dee2e7;
-    border-bottom: 1px solid #dee2e7;
+    border: 1px solid #dee2e7;
+
     
     .imageContainer {
+        width: 128px;
         height: 128px;
+        margin: auto;
     }
     .itemImage {
         width: 100%;

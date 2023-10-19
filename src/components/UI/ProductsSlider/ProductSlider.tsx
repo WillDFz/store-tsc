@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import styles from './ProductSlider.module.scss'
 import Rating from './../Rating/Rating';
 import { CartContext } from '@/components/Context/CartContext/CartContext';
+import { Container } from 'react-bootstrap';
 
 
 
@@ -92,14 +93,23 @@ const ProductSlider: React.FC<ProductSliderProps> = ({ category }) => {
 
   return (
     <>
-      <div className='custom-light-bg pe-0'>
+      <Container className=' pe-0'>
         <Swiper
-          slidesPerView={2.5}
-          spaceBetween={0}
           className={`${styles.slider} mb-3`}
+          slidesPerView={2.25}
+          spaceBetween={5}
+          loop={true}
+          breakpoints={{
+            1200:{
+              slidesPerView: 5.5,
+              spaceBetween: 10,
+              loop: true
+            }
+          }}
+
         >
           {products.map((product) => (
-            <SwiperSlide key={product.id} className=''>
+            <SwiperSlide key={product.id} className='custom-light-bg'>
               <div className={`${styles.item} text-center p-2`}>
 
                 <div className={`${styles.imageContainer} d-flex align-items-center justify-content-center mb-3`}><img src={product.image} className={`${styles.itemImage}`} alt="" /></div>
@@ -117,7 +127,7 @@ const ProductSlider: React.FC<ProductSliderProps> = ({ category }) => {
           ))}
 
         </Swiper>
-      </div>
+      </Container>
       <div className='px-3'>
 
         <ToastContainer />
