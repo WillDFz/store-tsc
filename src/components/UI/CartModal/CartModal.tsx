@@ -13,7 +13,7 @@ const CartModal: React.FC<CartModalProps> = ({ closeCart }) => {
     const cartContext = useContext(CartContext);
 
     if (!cartContext) {
-        return <div>Carregando...</div>;
+        return;
     }
 
     const { cart, addItem, totalItemsPrice } = cartContext;

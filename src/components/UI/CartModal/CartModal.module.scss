@@ -1,8 +1,10 @@
 .cartModal {
     width: 100%;
+    max-width: 400px;
     height: 100%;
     position: fixed;
     top: 0;
+    right: 0;
     background: #fff;
     z-index: 8;
     overflow-y: scroll;

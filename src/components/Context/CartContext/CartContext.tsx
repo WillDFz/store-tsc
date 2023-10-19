@@ -9,8 +9,8 @@ interface Item {
     category: string,
     image: string
     rating: {
-      count: number,
-      rate: number
+        count: number,
+        rate: number
     }
     quantity: number
 }
@@ -18,8 +18,9 @@ interface CartContextType {
     cart: Item[];
     addItem: (item: Item) => void;
     removeItem: (item: number) => void;
-    updateQuantity: (item: Item) => void;
     totalItemsPrice: number;
+    plusQuantity: (itemId: number) => void;
+    minusQuantity: (itemId: number) => void;
 }
 
 interface CartProviderProps {
@@ -70,30 +71,51 @@ const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         setCart(newCart);
     };
 
-    const updateQuantity = (item: Item) => {
-        const updatedCart = cart.map((cartItem) => {
-            if (cartItem.id === item.id) {
-                const updatedValue = Math.max(1, cartItem.quantity - 1);
-                return { ...cartItem, quantity: updatedValue };
+    const plusQuantity = (itemId: number) => {
+        const updatedCart = cart.map((item) => {
+            if (item.id === itemId) {
+                return {
+                    ...item,
+                    quantity: item.quantity + 1,
+                };
+            } else {
+                return item;
             }
-            return cartItem;
         });
         setCart(updatedCart);
     };
 
-    useEffect(()=> {
+    const minusQuantity = (itemId: number) => {
+        const updatedCart = cart.map((item) => {
+            if (item.id === itemId) {
+                return {
+                    ...item,
+                    quantity: Math.max(1, item.quantity - 1),
+                };
+            } else {
+                return item;
+            }
+        });
+        setCart(updatedCart);
+    };
+
+    const updateTotalPrice = (cart: Item[]) => {
+        let updatedPrices = 0
         cart.map((item)=>{
-            setTotalItemsPrice((totalItemsPrice + item.price))
+            updatedPrices += item.price * item.quantity
+            console.log("inside",updatedPrices)
         })
-        console.log("cart", cart)
-    },[cart])
+        console.log("outside",updatedPrices)
+
+        setTotalItemsPrice(updatedPrices)
+    }
 
     useEffect(() => {
-        console.log('total', totalItemsPrice)
-    }, [totalItemsPrice])
+        updateTotalPrice(cart)
+    }, [cart])
 
     return (
-        <CartContext.Provider value={{ cart, addItem, removeItem, updateQuantity, totalItemsPrice }}>
+        <CartContext.Provider value={{ cart, addItem, removeItem, minusQuantity, plusQuantity, totalItemsPrice }}>
             {children}
         </CartContext.Provider>
     )

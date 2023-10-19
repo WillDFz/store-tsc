@@ -34,7 +34,7 @@ const CartModalItem: React.FC<CartModalItemProps> = ({ cart, addItem }) => {
         return <></>
     }
 
-    const { removeItem, updateQuantity } = cartContext
+    const { removeItem, plusQuantity, minusQuantity } = cartContext
 
 
     return (
@@ -56,21 +56,18 @@ const CartModalItem: React.FC<CartModalItemProps> = ({ cart, addItem }) => {
                     <div className='d-flex align-items-center justify-content-between'>
 
                         <div className={`${styles.quantityInput} d-flex align-items-center`}>
-                            <button className='d-flex btn' onClick={(e) => updateQuantity(item)}>
+                            <button className='d-flex btn' onClick={(e) => minusQuantity(item.id)}>
                                 <Image src='svg/minus.svg' width={20} height={20} alt='minus' />
                             </button>
                             <div className='px-2'>{item?.quantity}</div>
-                            <button className='d-flex btn' onClick={(e) => addItem(item)}>
+                            <button className='d-flex btn' onClick={(e) => plusQuantity(item.id)}>
                                 <Image src="svg/plus.svg" width={20} height={20} alt='plus' />
                             </button>
                         </div>
                         <div className='fw-semibold'>${(item.price * item.quantity).toFixed(2)}</div>
                     </div>
-
                 </div>
-
             ))}
-
         </div>
     )
 }
