@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './Product.module.scss'
+import styles from './ProductImage.module.scss'
 
 interface ProductImageProps {
     image: string
