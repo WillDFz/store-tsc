@@ -9,13 +9,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import styles from './ProductSlider.module.scss'
 import Rating from './../Rating/Rating';
 import { CartContext } from '@/components/Context/CartContext/CartContext';
 import { Container } from 'react-bootstrap';
+import Link from 'next/link';
 
 
 
@@ -42,8 +41,6 @@ const ProductSlider: React.FC<ProductSliderProps> = ({ category }) => {
 
   const [products, setProducts] = useState<Product[]>([])
 
-  const cartContext = useContext(CartContext);
-
   useEffect(() => {
     if (category === 'all') {
       setApiRoute('products')
@@ -63,76 +60,37 @@ const ProductSlider: React.FC<ProductSliderProps> = ({ category }) => {
     fetchProducts()
   }, [apiRoute])
 
-  if (!cartContext) {
-    return
-  }
-
-  const { addItem } = cartContext
-
-
-  const cartAlert = (id: number) => {
-
-    toast('Produto adicionado ao carrinho!', {
-      toastId: id,
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: false,
-      progress: undefined,
-      theme: "light",
-      className: 'w-75 custom-font-small-02 ms-auto mt-4'
-    });
-  }
-
-
-
-
-
-
   return (
-    <>
-      <Container className=' pe-0'>
-        <Swiper
-          className={`${styles.slider} mb-3`}
-          slidesPerView={2.25}
-          spaceBetween={5}
-          loop={true}
-          breakpoints={{
-            1200:{
-              slidesPerView: 5.5,
-              spaceBetween: 10,
-              loop: true
-            }
-          }}
-
-        >
-          {products.map((product) => (
-            <SwiperSlide key={product.id} className='custom-light-bg'>
-              <div className={`${styles.item} text-center p-2`}>
-
+    <Container className=' pe-0'>
+      <Swiper
+        className={`${styles.slider} mb-3`}
+        slidesPerView={2.25}
+        spaceBetween={5}
+        loop={true}
+        breakpoints={{
+          1200: {
+            slidesPerView: 5.5,
+            spaceBetween: 10,
+            loop: true
+          }
+        }}
+      >
+        {products.map((product) => (
+          <SwiperSlide key={product.id} className='custom-light-bg'>
+            <div className={`${styles.item} text-center p-2`}>
+              <Link href={`/product/${product.id}`} className="no-decoration-link">
                 <div className={`${styles.imageContainer} d-flex align-items-center justify-content-center mb-3`}><img src={product.image} className={`${styles.itemImage}`} alt="" /></div>
                 <div>
                   <div className={`${styles.itemName} mb-2`}>{product.title}</div>
                   <div>${product.price}</div>
                   <Rating rating={product.rating.rate} />
-                  <button className='buy-btn' onClick={(e) => { addItem(product), cartAlert(product.id) }}>Comprar</button>
                 </div>
-              </div>
-
-            </SwiperSlide>
-
-
-          ))}
-
-        </Swiper>
-      </Container>
-      <div className='px-3'>
-
-        <ToastContainer />
-      </div>
-    </>
+              </Link>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </Container>
   )
 }
 
