@@ -9,6 +9,7 @@ import Sidebar from '../Sidebar/Sidebar';
 import CartModal from '../CartModal/CartModal'
 import { CartContext } from '@/components/Context/CartContext/CartContext'
 import Navbar from './../Navbar/Navbar';
+import Link from 'next/link';
 
 
 const Header: React.FC = () => {
@@ -33,7 +34,9 @@ const Header: React.FC = () => {
             </div>
           </Col>
           <Col>
+          <Link href="/">
             <Image src="/images/logo-typo.png" alt="logo" width={164} height={48} />
+          </Link>
           </Col>
           <Col className='d-none d-lg-block'>
             <SearchBar />
@@ -42,7 +45,7 @@ const Header: React.FC = () => {
             <div className='d-flex'>
               <div className='d-none d-md-flex flex-column me-3'>
                 <button className='btn'>
-                  <Image src="svg/user.svg" alt="user" width={25} height={25} />
+                  <Image src="/svg/user.svg" alt="user" width={25} height={25} />
                 </button>
                 <span className='custom-font-small'>Minha conta</span>
               </div>

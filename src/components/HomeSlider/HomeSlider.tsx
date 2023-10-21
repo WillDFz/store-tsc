@@ -4,6 +4,8 @@ import 'swiper/css';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import styles from './HomeSlider.module.scss'
+
 interface Banner {
     id: number,
     image: string,
@@ -45,18 +47,16 @@ const HomeSlider: React.FC = () => {
                 {bannersDesktop.map((banner: Banner, index) =>
                     <SwiperSlide key={index} >
                         <div className='position-relative'>
-
                             <img src={banner.image} className='w-100' alt={banner.title} />
                             <div className='text-over-banner-left w-50 px-3'>
-                                <div className='fw-bold'>{banner.title}</div>
-                                <div className='custom-font-small mb-3'>{banner.text}</div>
-                                <Link href={banner.link} className='custom-light-badge'>Saiba mais</Link>
+                                <div className={`${styles.bannerTitle} fw-bold`}>{banner.title}</div>
+                                <div className={`${styles.bannerText} custom-font-small mb-3`}>{banner.text}</div>
+                                <Link href={banner.link} className={`${styles.bannerBtn}`}>Saiba mais</Link>
                             </div>
                         </div>
                     </SwiperSlide>
                 )
                 }
-
             </Swiper>
         </section>
     )

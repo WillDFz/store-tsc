@@ -11,7 +11,7 @@ export default function Home() {
     <main className={styles.main}>
       <CategoriesSwiper />
       <HomeSlider />
-      <Timer deadlineInDays={2} />
+      <Timer screen="desktop" deadlineInDays={2} />
       <ProductSlider category='all' />
       <Banner banner="banner-02" /> 
       <ProductSlider category='electronics' />

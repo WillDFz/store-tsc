@@ -8,7 +8,7 @@ import SocialLinks from './../SocialLinks/SocialLinks';
 const Footer: React.FC = () => {
     return (
         <>
-            <Container className={`${styles.footer}`}>
+            <Container fluid className={`${styles.footer}`}>
                 <Row className='px-5 py-4'>
                     <Col sm={12} lg={3} className='mb-3'>
                         <div className='text-center text-lg-start'>
@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
 
             </Container>
             <Container fluid>
-                <div className={`${styles.footerLegal} text-center text-lg-start p-3`}>
+                <div className={`${styles.footerLegal} text-center p-3`}>
 
                     <Row>
                         <Col>
