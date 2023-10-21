@@ -1,6 +1,9 @@
 'use client'
 import React, { ReactNode, createContext, useEffect, useState } from 'react'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 interface Item {
     id: number,
     title: string,
@@ -21,6 +24,7 @@ interface CartContextType {
     totalItemsPrice: number;
     plusQuantity: (itemId: number) => void;
     minusQuantity: (itemId: number) => void;
+    cartAddAlert: (id: number) => void;
 }
 
 interface CartProviderProps {
@@ -64,6 +68,7 @@ const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
             ];
             setCart(updatedCart);
         }
+        cartAddAlert(item.id)
     };
 
     const removeItem = (itemId: number) => {
@@ -101,22 +106,38 @@ const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
 
     const updateTotalPrice = (cart: Item[]) => {
         let updatedPrices = 0
-        cart.map((item)=>{
+        cart.map((item) => {
             updatedPrices += item.price * item.quantity
-            console.log("inside",updatedPrices)
         })
-        console.log("outside",updatedPrices)
 
         setTotalItemsPrice(updatedPrices)
     }
+
+    const cartAddAlert = (id: number) => {
+
+        toast('Produto adicionado ao carrinho!', {
+            toastId: id,
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            theme: "light",
+            className: 'w-75 custom-font-small-02 ms-auto mt-4'
+        });
+    }
+
 
     useEffect(() => {
         updateTotalPrice(cart)
     }, [cart])
 
     return (
-        <CartContext.Provider value={{ cart, addItem, removeItem, minusQuantity, plusQuantity, totalItemsPrice }}>
+        <CartContext.Provider value={{ cart, addItem, removeItem, minusQuantity, plusQuantity, totalItemsPrice, cartAddAlert }}>
             {children}
+            <ToastContainer />
         </CartContext.Provider>
     )
 }
