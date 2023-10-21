@@ -8,9 +8,10 @@ import { Row, Col, Container } from 'react-bootstrap';
 
 interface TimerProps {
     deadlineInDays: number;
+    screen: string
 }
 
-const Timer: React.FC<TimerProps> = ({ deadlineInDays }) => {
+const Timer: React.FC<TimerProps> = ({ screen, deadlineInDays }) => {
     const [timeRemaining, setTimeRemaining] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
     const endTime = addDays(new Date, deadlineInDays);
 
@@ -41,7 +42,7 @@ const Timer: React.FC<TimerProps> = ({ deadlineInDays }) => {
 
 
     return (
-        <Container className='custom-light-bg py-3 mb-3'>
+        <Container className={`${styles.desktopContainer} custom-light-bg py-3 mb-3`}>
             <Row>
                 <Col>
                     <div className='fw-bold'>Promoções</div>

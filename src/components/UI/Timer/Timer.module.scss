@@ -1,3 +1,13 @@
+.desktopContainer{
+    @media (min-width: 1200px) {
+        max-width: 500px;
+        position: relative;
+        margin-top: -55px;
+        border-radius: 6px;
+        z-index: 2;
+    }
+}
+
 .timerCard {
     width: 50px;
     background: #eff2f4;
