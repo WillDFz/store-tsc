@@ -49,7 +49,7 @@ const CartModalItem: React.FC<CartModalItemProps> = ({ cart, addItem }) => {
                         <div className='w-50 custom-font-small-02 pt-2'>{item.title}</div>
                         <div style={{ position: 'absolute', right: '20px' }}>
                             <button className='btn' onClick={(e) => removeItem(item.id)}>
-                                <Image src="svg/trash.svg" width={20} height={20} alt='' />
+                                <Image src="/svg/trash.svg" width={20} height={20} alt='' />
                             </button>
                         </div>
                     </div>
@@ -57,11 +57,11 @@ const CartModalItem: React.FC<CartModalItemProps> = ({ cart, addItem }) => {
 
                         <div className={`${styles.quantityInput} d-flex align-items-center`}>
                             <button className='d-flex btn' onClick={(e) => minusQuantity(item.id)}>
-                                <Image src='svg/minus.svg' width={20} height={20} alt='minus' />
+                                <Image src='/svg/minus.svg' width={20} height={20} alt='minus' />
                             </button>
                             <div className='px-2'>{item?.quantity}</div>
                             <button className='d-flex btn' onClick={(e) => plusQuantity(item.id)}>
-                                <Image src="svg/plus.svg" width={20} height={20} alt='plus' />
+                                <Image src="/svg/plus.svg" width={20} height={20} alt='plus' />
                             </button>
                         </div>
                         <div className='fw-semibold'>${(item.price * item.quantity).toFixed(2)}</div>

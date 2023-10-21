@@ -24,7 +24,7 @@ const CartModal: React.FC<CartModalProps> = ({ closeCart }) => {
 
             <div className={`${styles.cartModalHeader} d-flex align-items-center`}>
                 <button className='d-flex btn' onClick={(e) => closeCart(false)}>
-                    <Image src="svg/arrow-left.svg" width={16} height={16} alt='' />
+                    <Image src="/svg/arrow-left.svg" width={16} height={16} alt='' />
                 </button>
                 <div className='fw-semibold ms-2'>
                     Carrinho
