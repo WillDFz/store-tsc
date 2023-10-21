@@ -16,7 +16,6 @@ export default function Home() {
       <Banner banner="banner-02" /> 
       <ProductSlider category='electronics' />
       <ProductSlider category='jewelery' />
-      <Footer />
     </main>
   )
 }
